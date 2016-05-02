@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Profile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="keywords" content="Modern Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design"/>
+    <script type="application/x-javascript">
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <link href="/css/bootstrap.min.css" rel='stylesheet' type='text/css'/>
+    <link href="/css/style.css" rel='stylesheet' type='text/css'/>
+    <link href="/css/font-awesome.css" rel="stylesheet"/>
+    <script src="/js/jquery.min.js"></script>
+    <link href='http://fonts.useso.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'/>
+    <script src="/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div id="wrapper">
+    <nav th:replace="index.html :: navigator">
+
+    </nav>
+    <div id="page-wrapper">
+        <div class="col-md-12 graphs">
+            <div class="xs">
+                <h3>Profile</h3>
+
+                <div class="panel-body">
+
+                    <form role="form" class="form-horizontal">
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Full Name</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+									<span class="input-group-addon">
+										<i class="fa fa-user"></i>
+									</span>
+                                    <input type="text" class="form-control1" placeholder="Full Name" readonly=""/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Account</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+									<span class="input-group-addon">
+										<i class="fa fa-file"></i>
+									</span>
+                                    <input type="text" class="form-control1" placeholder="Account" readonly=""/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <h3>Modify Password</h3>
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Origin Password</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+									<span class="input-group-addon">
+										<i class="fa fa-key"></i>
+									</span>
+                                    <input type="password" class="form-control1" placeholder="Password"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">New Password</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+									<span class="input-group-addon">
+										<i class="fa fa-key"></i>
+									</span>
+                                    <input type="password" class="form-control1" placeholder="Password"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Type Again</label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+									<span class="input-group-addon">
+										<i class="fa fa-key"></i>
+									</span>
+                                    <input type="password" class="form-control1" placeholder="Password"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel-footer">
+                            <div class="row">
+                                <div class="col-sm-8 col-sm-offset-2">
+                                    <input type="submit" class="btn-success btn" value="submit"/>
+                                    <input type="reset" class="btn-default btn" value="reset"/>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+            <div th:replace="index.html :: footer">
+            </div>
+        </div>
+    </div>
+</div>
+<link href="css/custom.css" rel="stylesheet"/>
+<script src="js/metisMenu.min.js"></script>
+<script src="js/custom.js"></script>
+</body>
+</html>
