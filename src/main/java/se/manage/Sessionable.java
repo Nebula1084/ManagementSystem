@@ -2,7 +2,7 @@ package se.manage;
 
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-@SessionAttributes({"curStatus", "curUser"})
+@SessionAttributes({Sessionable.Status, Sessionable.User})
 public interface Sessionable {
     String Status = "curStatus";
     String User = "curUser";
