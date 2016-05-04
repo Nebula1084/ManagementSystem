@@ -28,10 +28,10 @@ public class LoginTest extends ManageTest {
     @Test
     public void test() {
         User user = new User("user", "123", "123");
-        assertThat(this.userService.login(user), is(true));
+        assertThat(this.userService.login(user) != null, is(true));
         user.setPassword("124");
-        assertThat(this.userService.login(user), is(false));
+        assertThat(this.userService.login(user) != null, is(false));
         user = new User("user1", "123", "123");
-        assertThat(this.userService.login(user), is(false));
+        assertThat(this.userService.login(user) != null, is(false));
     }
 }

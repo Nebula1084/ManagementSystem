@@ -11,9 +11,11 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 import se.manage.ManageStatus;
+import se.manage.user.User;
 
 @Component
 public class ManageFilter implements Filter {
@@ -26,19 +28,19 @@ public class ManageFilter implements Filter {
     }
 
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        HttpServletRequest req = (HttpServletRequest)request;
-        HttpServletResponse rsp = (HttpServletResponse)response;
+        HttpServletRequest req = (HttpServletRequest) request;
+        HttpServletResponse rsp = (HttpServletResponse) response;
         HttpSession session = req.getSession(true);
         String servletPath = req.getServletPath();
-        if(session.getAttribute("curStatus") == null) {
-            session.setAttribute("curStatus", new ManageStatus());
+        if (session.getAttribute(Sessionable.Status) == null) {
+            session.setAttribute(Sessionable.Status, new ManageStatus());
         }
 
-        if(!servletPath.endsWith(".html") && !servletPath.endsWith(".do")) {
+        if (!servletPath.endsWith(".html") && !servletPath.endsWith(".do")) {
             chain.doFilter(request, response);
-        } else if(!servletPath.equals("/login.html") && !servletPath.equals("/register.html") && !servletPath.equals("/login.do") && !servletPath.equals("/register.do")) {
-            this.logger.info(servletPath);
-            if(session.getAttribute("curUser") == null) {
+        } else if (!servletPath.equals("/login.html") && !servletPath.equals("/register.html") &&
+                !servletPath.equals("/login.do") && !servletPath.equals("/register.do")) {
+            if (session.getAttribute(Sessionable.User) == null) {
                 rsp.sendRedirect("/");
             } else {
                 chain.doFilter(request, response);

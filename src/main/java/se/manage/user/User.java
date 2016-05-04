@@ -1,7 +1,9 @@
 package se.manage.user;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import se.manage.stock.Stock;
+
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class User {
@@ -9,6 +11,9 @@ public class User {
     private String account = "";
     private String password = "";
     private String fullName = "";
+
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
+    private Set<Stock> stocks;
 
     public User() {
     }
@@ -43,11 +48,15 @@ public class User {
         return this.fullName;
     }
 
+    public void setStocks(Set<Stock> stocks) {
+        this.stocks = stocks;
+    }
+
+    public Set<Stock> getStocks() {
+        return stocks;
+    }
+
     public String toString() {
-        StringBuffer buffer = new StringBuffer();
-        buffer.append("[account:").append(this.account)
-                .append(", password:").append(this.password)
-                .append(", fullName:").append(this.fullName).append("]");
-        return buffer.toString();
+        return String.format("{account:%s, password:%s, fullName:%s}", this.account, this.password, this.fullName);
     }
 }

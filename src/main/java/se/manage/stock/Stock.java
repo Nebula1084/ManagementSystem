@@ -2,33 +2,34 @@ package se.manage.stock;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.util.Objects;
 
 @Entity
 public class Stock {
     @Id
     private String code = "code";
-    private String name = "name";
-    private String surgedLimit = "surged";
-    private String declineLimit = "decline";
-    private Boolean pause;
 
     public Stock() {
-        this.pause = Boolean.FALSE;
+
+    }
+
+    public Stock(String code) {
+        this.code = code;
     }
 
     public String getCode() {
         return this.code;
     }
 
-    public String getName() {
-        return this.name;
+    @Override
+    public boolean equals(Object obj) {
+        Stock t = (Stock) obj;
+        return Objects.equals(t.code, this.code);
     }
 
-    public String getSurgedLimit() {
-        return this.surgedLimit;
+    @Override
+    public String toString(){
+        return String.format("{code : %s}", code);
     }
 
-    public String getDeclineLimit() {
-        return this.declineLimit;
-    }
 }

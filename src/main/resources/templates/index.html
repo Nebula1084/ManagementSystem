@@ -48,7 +48,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         class="badge">9</span></a>
                 <ul class="dropdown-menu">
                     <li class="m_2"><a href="profile.html"><i class="fa fa-user"></i> Profile</a></li>
-                    <li class="m_2"><a href="login.html"><i class="fa fa-lock"></i> Logout</a></li>
+                    <li class="m_2"><a href="logout.do"><i class="fa fa-lock"></i> Logout</a></li>
                 </ul>
             </li>
         </ul>
@@ -77,14 +77,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <th>Stock code</th>
                             <th>Stock name</th>
                             <th>Stock price</th>
-                            <th>Column heading</th>
+                            <th>Surging limit(New)</th>
+                            <th>Decline limit(New)</th>
+                            <th>Least price</th>
+                            <th>Hight price</th>
+                            <th>State</th>
                         </tr>
                         </thead>
-                        <tr class="active" th:each="stock : ${stocks}">
+                        <tr th:class="${rowStat.odd} ? 'active' : 'success'" th:each="stock,rowStat : ${stocks}">
                             <th scope="row" th:text="${stock.code}"></th>
                             <td th:text="${stock.name}"></td>
-                            <td th:text="${stock.surgedLimit}"></td>
-                            <td th:text="${stock.declineLimit}">Column content</td>
+                            <td th:text="${stock.price}"></td>
+                            <td th:text="${stock.surging_range*100+'%('+stock.surging_range_set*100+'%)'}"></td>
+                            <td th:text="${stock.decline_range*100+'%('+stock.decline_range_set*100+'%)'}"></td>
+                            <td th:text="${stock.least_price}"></td>
+                            <td th:text="${stock.highest_price}"></td>
+                            <td th:text="${stock.state}"></td>
                         </tr>
                     </table>
                 </div>
