@@ -42,7 +42,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<span class="input-group-addon">
 										<i class="fa fa-user"></i>
 									</span>
-                                    <input type="text" class="form-control1" placeholder="Full Name" readonly=""/>
+                                    <input type="text" class="form-control1" th:placeholder="${curUser.fullName}" readonly=""/>
                                 </div>
                             </div>
                         </div>
@@ -54,7 +54,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<span class="input-group-addon">
 										<i class="fa fa-file"></i>
 									</span>
-                                    <input type="text" class="form-control1" placeholder="Account" readonly=""/>
+                                    <input type="text" class="form-control1" th:placeholder="${curUser.account}" readonly=""/>
                                 </div>
                             </div>
                         </div>
@@ -101,7 +101,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <div class="row">
                                 <div class="col-sm-8 col-sm-offset-2">
                                     <input type="submit" class="btn-success btn" value="submit"/>
-                                    <input type="reset" class="btn-default btn" value="reset"/>
                                 </div>
                             </div>
                         </div>

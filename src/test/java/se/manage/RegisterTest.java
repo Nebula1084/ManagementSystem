@@ -31,8 +31,8 @@ public class RegisterTest extends ManageTest {
     @Test
     public void test() {
         User user = new User("user1", "123", "123");
-        assertThat(this.userService.register(user), is(true));
+        assertThat(this.userService.register(user)!=null, is(true));
         user = new User("user1", "123", "123");
-        assertThat(this.userService.register(user), is(false));
+        assertThat(this.userService.register(user)!=null, is(false));
     }
 }

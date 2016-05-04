@@ -13,11 +13,9 @@ public class ManagerView implements Sessionable {
     public static final String registerPage = "register.html";
     public static final String addStockPage = "add_stock.html";
     public static final String profilePage = "profile.html";
+    public static final String orderPage = "order.html";
 
-    @RequestMapping(
-            value = {"/error"},
-            method = {RequestMethod.GET}
-    )
+    @RequestMapping(value = {"/error"}, method = {RequestMethod.GET})
     public String error() {
         return errorPage;
     }

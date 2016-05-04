@@ -75,8 +75,16 @@ public class VolatileStock implements Cloneable {
         return highest_price;
     }
 
+    public void setSurging_range_set(Float surging_range_set) {
+        this.surging_range_set = surging_range_set;
+    }
+
     public Float getSurging_range_set() {
         return surging_range_set;
+    }
+
+    public void setDecline_range_set(Float decline_range_set) {
+        this.decline_range_set = decline_range_set;
     }
 
     public Float getDecline_range_set() {

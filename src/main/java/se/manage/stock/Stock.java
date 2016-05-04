@@ -28,7 +28,7 @@ public class Stock {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return String.format("{code : %s}", code);
     }
 

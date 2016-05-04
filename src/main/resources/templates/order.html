@@ -1,0 +1,213 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Inbox</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="keywords" content="Modern Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design"/>
+    <script type="application/x-javascript">
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <link href="/css/bootstrap.min.css" rel='stylesheet' type='text/css'/>
+    <link href="/css/style.css" rel='stylesheet' type='text/css'/>
+    <link href="/css/font-awesome.css" rel="stylesheet"/>
+    <script src="/js/jquery.min.js"></script>
+    <link href='http://fonts.useso.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'/>
+    <script src="/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<div id="wrapper">
+    <nav th:replace="index.html :: navigator">
+
+    </nav>
+
+    <div id="page-wrapper">
+        <div class="graphs">
+            <div class="xs">
+                <h3 th:text="${stock.name}+'('+${stock.code}+')'"></h3>
+
+                <div class="inbox_right content_bottom">
+
+                    <div class="mailbox-content">
+                        <div class="col_3">
+                            <div class="col-md-3 widget widget1">
+                                <div class="r3_counter_box">
+                                    <i class="pull-left fa fa-dollar icon-rounded"></i>
+                                    <div class="stats">
+                                        <h5><strong th:text="'$'+${stock.price}"></strong></h5>
+                                        <span>Price</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 widget widget1">
+                                <form name="prForm" class="r3_counter_box"
+                                      th:action="'/stock/state/'+${stock.code}+'.do'">
+                                    <i class="pull-left fa fa-play user1 icon-rounded"
+                                       onclick="document.prForm.submit();" th:if="${stock.state.equals('pause')}">
+                                    </i>
+                                    <i class="pull-left fa fa-pause user1 icon-rounded"
+                                       onclick="document.prForm.submit();" th:if="${stock.state.equals('normal')}">
+                                    </i>
+                                    <div class="stats">
+                                        <h5><strong th:text="${stock.state}"></strong></h5>
+                                        <span>State</span>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-md-3 widget widget1">
+                                <div class="r3_counter_box">
+                                    <i class="pull-left fa fa-angle-double-up user2 icon-rounded"
+                                       data-toggle="modal" data-target="#surgeModal">
+
+                                    </i>
+                                    <div class="stats">
+                                        <h5><strong th:text="${stock.surging_range_set*100}+'%'"></strong></h5>
+                                        <span>Surging limit</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal fade" id="surgeModal" tabindex="-1" role="dialog"
+                                 aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                <div class="modal-dialog">
+                                    <form class="modal-content" method="post"
+                                          th:action="'/stock/limit/surging/'+${stock.code}+'.do'">
+                                        <div class="modal-header">
+                                            <h2 class="modal-title">Set surging limit</h2>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="input-group">
+                                                <input type="number" min="0" max="100" class="form-control1"
+                                                       name="limit" placeholder=""/>
+                                                <span class="input-group-addon">%</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                Close
+                                            </button>
+                                            <input type="submit" class="btn btn-primary" value="Submit"/>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 widget">
+                                <div class="r3_counter_box">
+                                    <i class="pull-left fa fa-angle-double-down dollar1 icon-rounded"
+                                       data-toggle="modal" data-target="#declineModal">
+
+                                    </i>
+                                    <div class="stats">
+                                        <h5><strong th:text="${stock.decline_range_set*100}+'%'"></strong></h5>
+                                        <span>Decline limit</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal fade" id="declineModal" tabindex="-1" role="dialog"
+                                 aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                <div class="modal-dialog">
+                                    <form class="modal-content" method="post"
+                                          th:action="'/stock/limit/decline/'+${stock.code}+'.do'">
+                                        <div class="modal-header">
+                                            <h2 class="modal-title">Set decline limit</h2>
+
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="input-group">
+                                                <input type="number" min="0" max="100" class="form-control1"
+                                                       name="limit" placeholder=""/>
+                                                <span class="input-group-addon">%</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                Close
+                                            </button>
+                                            <input type="submit" class="btn btn-primary" value="Submit"/>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="mail-toolbar clearfix">
+
+                            <div class="float-left ">
+
+                            </div>
+                            <div class="float-right">
+
+                                <div class="btn-group m-r-sm mail-hidden-options" style="display: inline-block;">
+                                    <div class="btn-group">
+                                        <a class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                           aria-expanded="false"><i class="fa fa-folder"></i> <span
+                                                class="caret"></span></a>
+                                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                            <li><a href="#">Amount</a></li>
+                                            <li><a href="#">Price</a></li>
+                                            <li><a href="#">Timestamp</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="btn-group">
+                                        <a class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                           aria-expanded="false"><i class="fa fa-tags"></i> <span class="caret"></span></a>
+                                        <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                            <li><a href="#">Ascendent</a></li>
+                                            <li><a href="#">Descendent</a></li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Type</th>
+                                <th>Amount</th>
+                                <th>Price</th>
+                                <th>Timestamp</th>
+                            </tr>
+                            </thead>
+                            <tr th:class="${rowStat.odd} ? 'active' : 'success'" th:each="order,rowStat : ${orders}">
+                                <th scope="row" th:text="${order.id}"></th>
+                                <td th:text="${order.type}"></td>
+                                <td th:text="${order.amount}"></td>
+                                <td th:text="${order.price}"></td>
+                                <td th:text="${order.timestamp}"></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+
+                <div th:replace="index.html :: footer">
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- /#page-wrapper -->
+</div>
+<!-- /#wrapper -->
+<!-- Nav CSS -->
+<link href="/css/custom.css" rel="stylesheet"/>
+<!-- Metis Menu Plugin JavaScript -->
+<script src="/js/metisMenu.min.js"></script>
+<script src="/js/custom.js"></script>
+</body>
+</html>

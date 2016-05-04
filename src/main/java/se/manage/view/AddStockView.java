@@ -37,7 +37,6 @@ public class AddStockView implements Sessionable {
             VolatileStock stock = e.clone();
             for (Stock g : userStocks) {
                 if (Objects.equals(g.getCode(), stock.getCode())) {
-                    System.out.println(g);
                     stock.setChecked(true);
                     break;
                 }

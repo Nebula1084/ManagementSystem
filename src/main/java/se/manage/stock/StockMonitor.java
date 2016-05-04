@@ -10,7 +10,9 @@ import org.springframework.web.client.RestTemplate;
 import se.manage.controller.DataFaker;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Component
 public class StockMonitor extends Thread {
@@ -20,6 +22,7 @@ public class StockMonitor extends Thread {
     private ObjectMapper objectMapper;
     private RestTemplate restTemplate;
     private StockWrapper stockMarket;
+    private Map<String, VolatileStock> stockInfo;
 
     @Autowired
     public DataFaker dataFaker;
@@ -27,6 +30,7 @@ public class StockMonitor extends Thread {
     public StockMonitor() {
         objectMapper = new ObjectMapper();
         restTemplate = new RestTemplate();
+        stockInfo = new HashMap<>();
         this.start();
     }
 
@@ -43,6 +47,8 @@ public class StockMonitor extends Thread {
                 try {
                     String ret = restTemplate.postForObject(allUrl, null, String.class);
                     stockMarket = objectMapper.readValue(ret, StockWrapper.class);
+                    stockInfo.clear();
+                    stockMarket.getStocks().stream().forEach(e -> stockInfo.put(e.getCode(), e));
                     System.out.println(ret);
                 } catch (JsonParseException e) {
                     logger.info(e);
@@ -65,5 +71,9 @@ public class StockMonitor extends Thread {
 
     public synchronized List<VolatileStock> getStockMarket() {
         return stockMarket.getStocks();
+    }
+
+    public Map<String, VolatileStock> getStockInfo() {
+        return stockInfo;
     }
 }

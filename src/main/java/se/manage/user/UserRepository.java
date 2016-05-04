@@ -5,5 +5,5 @@ import org.springframework.data.repository.CrudRepository;
 import se.manage.user.User;
 
 public interface UserRepository extends CrudRepository<User, Long> {
-    List<User> findByAccount(String var1);
+    List<User> findByAccount(String account);
 }

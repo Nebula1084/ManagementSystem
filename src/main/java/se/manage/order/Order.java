@@ -1,11 +1,17 @@
 package se.manage.order;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class Order {
     private Integer id;
     private String code;
     private String type;
     private Integer amount;
     private Float price;
+    private Date timestamp = Calendar.getInstance().getTime();
 
     final public static String BUY = "buy";
     final public static String SELL = "sell";
@@ -52,6 +58,11 @@ public class Order {
 
     public void setPrice(Float price) {
         this.price = price;
+    }
+
+    public String getTimestamp() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+        return dateFormat.format(timestamp);
     }
 
     @Override

@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
+import se.manage.controller.PostTemplate;
 
 import java.io.IOException;
 import java.util.List;
@@ -24,14 +25,9 @@ public class OrderRetriver {
     }
 
     public List<Order> getOrders() throws IOException {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.MULTIPART_FORM_DATA);
-
-        MultiValueMap<String, String> mvm = new LinkedMultiValueMap<>();
-        mvm.add("code", code);
-        HttpEntity<MultiValueMap<String, String>> formEntity = new HttpEntity<>(mvm, headers);
-        RestTemplate restTemplate = new RestTemplate();
-        String result = restTemplate.postForObject(ordUrl, formEntity, String.class);
+        PostTemplate postTemplate = new PostTemplate();
+        postTemplate.add("code", code);
+        String result = postTemplate.post(ordUrl);
         OrderWrapper wrapper = objectMapper.readValue(result, OrderWrapper.class);
         return wrapper.getOrders();
     }
