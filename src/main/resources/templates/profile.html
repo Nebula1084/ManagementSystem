@@ -6,20 +6,57 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="keywords" content="Modern Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design"/>
-    <script type="application/x-javascript">
-        addEventListener("load", function () {
-            setTimeout(hideURLbar, 0);
-        }, false);
-        function hideURLbar() {
-            window.scrollTo(0, 1);
-        }
-    </script>
     <link href="/css/bootstrap.min.css" rel='stylesheet' type='text/css'/>
     <link href="/css/style.css" rel='stylesheet' type='text/css'/>
     <link href="/css/font-awesome.css" rel="stylesheet"/>
     <script src="/js/jquery.min.js"></script>
     <link href='http://fonts.useso.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'/>
     <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/myUtil.js"></script>
+
+    <script th:inline="javascript">
+
+
+        var org_password;
+        var new_password;
+        var ret_password;
+
+        window.onload = function () {
+            org_password = $('#org_password');
+            new_password = $('#new_password');
+            ret_password = $('#ret_password');
+            /*<![CDATA[*/
+
+            switch ([[${curStatus.status}]]) {
+                case 1:
+                    showBar(org_password, "Account or password isn't correct.");
+                    break;
+                case 2:
+                    showBar(org_password, "Character is not valid. Only a-z, A-Z and _");
+                    break;
+            }
+
+            /*]]>*/
+        };
+
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+
+        function validate() {
+            var ret = checkEmpty([org_password, new_password, ret_password]);
+            if (!ret) return ret;
+            if (new_password.val() != ret_password.val()) {
+                ret = false;
+                showBar(ret_password, "Passwords don't match.");
+            }
+            return ret;
+        }
+
+    </script>
 </head>
 <body>
 <div id="wrapper">
@@ -33,7 +70,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                 <div class="panel-body">
 
-                    <form role="form" class="form-horizontal">
+                    <form action="/modify.do" method="post" role="form" class="form-horizontal"
+                          onclick="return validate()">
 
                         <div class="form-group">
                             <label class="col-md-2 control-label">Full Name</label>
@@ -42,7 +80,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<span class="input-group-addon">
 										<i class="fa fa-user"></i>
 									</span>
-                                    <input type="text" class="form-control1" th:placeholder="${curUser.fullName}" readonly=""/>
+                                    <input type="text" class="form-control1" th:placeholder="${curUser.fullName}"
+                                           readonly=""/>
                                 </div>
                             </div>
                         </div>
@@ -54,7 +93,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<span class="input-group-addon">
 										<i class="fa fa-file"></i>
 									</span>
-                                    <input type="text" class="form-control1" th:placeholder="${curUser.account}" readonly=""/>
+                                    <input type="text" class="form-control1" th:placeholder="${curUser.account}"
+                                           readonly=""/>
                                 </div>
                             </div>
                         </div>
@@ -68,7 +108,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<span class="input-group-addon">
 										<i class="fa fa-key"></i>
 									</span>
-                                    <input type="password" class="form-control1" placeholder="Password"/>
+                                    <input id="org_password" type="password" class="form-control1"
+                                           name="org" placeholder="Password" data-toggle="popover"
+                                           data-placement="right" autofocus=""/>
                                 </div>
                             </div>
                         </div>
@@ -80,7 +122,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<span class="input-group-addon">
 										<i class="fa fa-key"></i>
 									</span>
-                                    <input type="password" class="form-control1" placeholder="Password"/>
+                                    <input id="new_password" type="password" class="form-control1"
+                                           name="new" placeholder="Password" data-toggle="popover"
+                                           data-placement="right"/>
                                 </div>
                             </div>
                         </div>
@@ -92,7 +136,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<span class="input-group-addon">
 										<i class="fa fa-key"></i>
 									</span>
-                                    <input type="password" class="form-control1" placeholder="Password"/>
+                                    <input id="ret_password" type="password" class="form-control1"
+                                           placeholder="Password" data-toggle="popover" data-placement="right"/>
                                 </div>
                             </div>
                         </div>
