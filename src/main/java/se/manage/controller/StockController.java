@@ -5,6 +5,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import se.manage.ManageStatus;
 import se.manage.Sessionable;
 import se.manage.stock.Stock;
 import se.manage.stock.StockMonitor;
@@ -52,7 +53,6 @@ public class StockController implements Sessionable {
         return "redirect:/" + ManagerView.addStockPage;
     }
 
-
     @RequestMapping(value = "/stock/state/{code}.do", method = RequestMethod.GET)
     public String changeState(@PathVariable("code") String code, @ModelAttribute(Sessionable.User) User user) {
         VolatileStock stock = stockMonitor.getStockInfo().get(code);
@@ -69,19 +69,31 @@ public class StockController implements Sessionable {
         return "redirect:/order/" + code + ".html";
     }
 
-    @RequestMapping(value = "stock/limit/surging/{code}.do", method = RequestMethod.POST)
+    @RequestMapping(value = "/stock/limit/surging/{code}.do", method = RequestMethod.POST)
     public String limitSurging(@RequestParam(value = "limit") String limit, @PathVariable("code") String code) {
         Float l = Float.valueOf(limit);
         if (parseReturn(postLimit(surgingUrl, code, String.valueOf(l / 100))))
-            stockMonitor.getStockInfo().get(code).setSurging_range_set(l/100);
+            stockMonitor.getStockInfo().get(code).setSurging_range_set(l / 100);
         return "redirect:/order/" + code + ".html";
     }
 
-    @RequestMapping(value = "stock/limit/decline/{code}.do", method = RequestMethod.POST)
+    @RequestMapping(value = "/stock/limit/decline/{code}.do", method = RequestMethod.POST)
     public String limitDecline(@RequestParam(value = "limit") String limit, @PathVariable("code") String code) {
         Float l = Float.valueOf(limit);
         if (parseReturn(postLimit(declineUrl, code, String.valueOf(l / 100))))
-            stockMonitor.getStockInfo().get(code).setDecline_range_set(l/100);
+            stockMonitor.getStockInfo().get(code).setDecline_range_set(l / 100);
+        return "redirect:/order/" + code + ".html";
+    }
+
+    @RequestMapping(value = "/order/sort/atr/{code}/{atr}")
+    public String changeAtr(@PathVariable("code") String code, @PathVariable("atr") int atr, @ModelAttribute(Sessionable.Status) ManageStatus status) {
+        status.orderAtr = atr;
+        return "redirect:/order/" + code + ".html";
+    }
+
+    @RequestMapping(value = "/order/sort/ord/{code}/{ord}")
+    public String changeOrd(@PathVariable("code") String code, @PathVariable("ord") int ord, @ModelAttribute(Sessionable.Status) ManageStatus status) {
+        status.orderOrd = ord;
         return "redirect:/order/" + code + ".html";
     }
 

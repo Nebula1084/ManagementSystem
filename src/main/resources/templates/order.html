@@ -155,17 +155,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                            aria-expanded="false"><i class="fa fa-folder"></i> <span
                                                 class="caret"></span></a>
                                         <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                            <li><a href="#">Amount</a></li>
-                                            <li><a href="#">Price</a></li>
-                                            <li><a href="#">Timestamp</a></li>
+                                            <li><a th:href="'/order/sort/atr/'+${stock.code}+'/1'">Amount</a></li>
+                                            <li><a th:href="'/order/sort/atr/'+${stock.code}+'/2'">Price</a></li>
+                                            <li><a th:href="'/order/sort/atr/'+${stock.code}+'/3'">Timestamp</a></li>
                                         </ul>
                                     </div>
                                     <div class="btn-group">
                                         <a class="btn btn-default dropdown-toggle" data-toggle="dropdown"
                                            aria-expanded="false"><i class="fa fa-tags"></i> <span class="caret"></span></a>
                                         <ul class="dropdown-menu dropdown-menu-right" role="menu">
-                                            <li><a href="#">Ascendent</a></li>
-                                            <li><a href="#">Descendent</a></li>
+                                            <li><a th:href="'/order/sort/ord/'+${stock.code}+'/1'">Ascendent</a></li>
+                                            <li><a th:href="'/order/sort/ord/'+${stock.code}+'/2'">Descendent</a></li>
 
                                         </ul>
                                     </div>

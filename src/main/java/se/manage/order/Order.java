@@ -11,7 +11,7 @@ public class Order {
     private String type;
     private Integer amount;
     private Float price;
-    private Date timestamp = Calendar.getInstance().getTime();
+    public Date timestamp = Calendar.getInstance().getTime();
 
     final public static String BUY = "buy";
     final public static String SELL = "sell";

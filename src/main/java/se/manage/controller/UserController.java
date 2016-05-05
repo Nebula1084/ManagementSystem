@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import se.manage.ManageStatus;
 import se.manage.Sessionable;
-import se.manage.user.PassValidator;
+import se.manage.user.PassMatcher;
 import se.manage.user.User;
 import se.manage.user.UserService;
 import se.manage.user.UserValidator;
@@ -23,15 +23,12 @@ public class UserController implements Sessionable {
     UserService userService;
     private Logger logger = Logger.getLogger(UserController.class);
 
+    @Autowired
+    PassMatcher passMatcher;
 
     @InitBinder({"user"})
     public void initBinder(DataBinder binder) {
         binder.addValidators(new UserValidator());
-    }
-
-    @InitBinder({"org", "new"})
-    public void initPass(DataBinder binder) {
-        binder.addValidators(new PassValidator());
     }
 
     @RequestMapping(value = {"/login.do"}, method = {RequestMethod.POST}
@@ -88,14 +85,12 @@ public class UserController implements Sessionable {
 
     @RequestMapping(value = "/modify.do", method = RequestMethod.POST)
     public String modify(@ModelAttribute(Sessionable.User) User user, @ModelAttribute(Sessionable.Status) ManageStatus status,
-                         @Valid @RequestParam("org") String orgP, BindingResult ro, @Valid @RequestParam("new") String newP, BindingResult rn) {
-        if (ro.hasErrors()) {
-            this.logger.info(ro);
+                         @RequestParam("org") String orgP, @RequestParam("new") String newP) {
+        if (passMatcher.validate(orgP)) {
             status.status = ManageStatus.invalid_char;
             return "redirect:/profile.html";
         }
-        if (rn.hasErrors()) {
-            this.logger.info(ro);
+        if (passMatcher.validate(orgP)) {
             status.status = ManageStatus.invalid_char;
             return "redirect:/profile.html";
         }

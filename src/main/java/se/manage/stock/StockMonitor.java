@@ -49,7 +49,6 @@ public class StockMonitor extends Thread {
                     stockMarket = objectMapper.readValue(ret, StockWrapper.class);
                     stockInfo.clear();
                     stockMarket.getStocks().stream().forEach(e -> stockInfo.put(e.getCode(), e));
-                    System.out.println(ret);
                 } catch (JsonParseException e) {
                     logger.info(e);
                     e.printStackTrace();

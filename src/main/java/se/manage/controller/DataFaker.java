@@ -46,8 +46,9 @@ public class DataFaker {
             temp.setCode(code);
             temp.setId(i);
             temp.setType(i % 2 == 0 ? Order.BUY : Order.SELL);
-            temp.setAmount(12);
-            temp.setPrice(1.59f);
+            temp.setAmount(12 + i);
+            temp.setPrice(1.59f * (10 - i));
+            temp.timestamp.setTime(i * 100000000);
             orders.add(temp);
         }
         return new OrderWrapper(orders);

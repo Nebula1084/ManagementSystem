@@ -29,10 +29,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
             switch ([[${curStatus.status}]]) {
                 case 1:
-                    showBar(org_password, "Account or password isn't correct.");
+                    showBar(new_password, "Account or password isn't correct.");
                     break;
                 case 2:
-                    showBar(org_password, "Character is not valid. Only a-z, A-Z and _");
+                    showBar(new_password, "Character is not valid. Only a-z, A-Z and _");
                     break;
             }
 
@@ -71,7 +71,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="panel-body">
 
                     <form action="/modify.do" method="post" role="form" class="form-horizontal"
-                          onclick="return validate()">
+                          onsubmit="return validate()">
 
                         <div class="form-group">
                             <label class="col-md-2 control-label">Full Name</label>
