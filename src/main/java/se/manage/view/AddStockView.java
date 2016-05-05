@@ -35,10 +35,12 @@ public class AddStockView implements Sessionable {
         Set<Stock> userStocks = user.getStocks();
         market.stream().forEach(e -> {
             VolatileStock stock = e.clone();
-            for (Stock g : userStocks) {
-                if (Objects.equals(g.getCode(), stock.getCode())) {
-                    stock.setChecked(true);
-                    break;
+            if (userStocks != null) {
+                for (Stock g : userStocks) {
+                    if (Objects.equals(g.getCode(), stock.getCode())) {
+                        stock.setChecked(true);
+                        break;
+                    }
                 }
             }
             temp.add(stock);

@@ -36,10 +36,12 @@ public class IndexView implements Sessionable {
         Set<Stock> userStocks = user.getStocks();
         stocks.stream().forEach(e -> {
             VolatileStock stock = e.clone();
-            for (Stock g : userStocks) {
-                if (Objects.equals(g.getCode(), stock.getCode())) {
-                    temp.add(stock);
-                    break;
+            if (userStocks != null) {
+                for (Stock g : userStocks) {
+                    if (Objects.equals(g.getCode(), stock.getCode())) {
+                        temp.add(stock);
+                        break;
+                    }
                 }
             }
         });
