@@ -37,7 +37,7 @@ public class StockMonitor extends Thread {
     @Override
     public void run() {
         try {
-            sleep(1000);
+            sleep(10000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
