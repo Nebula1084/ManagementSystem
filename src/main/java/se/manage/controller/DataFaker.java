@@ -23,7 +23,7 @@ public class DataFaker {
     public DataFaker() {
         stocks = new ArrayList<>();
         stockMap = new HashMap<>();
-        for (Integer i = 0; i < 15; i++) {
+        for (Integer i = 0; i < 50; i++) {
             VolatileStock temp = new VolatileStock();
             temp.setCode(i.toString());
             temp.setName(temp.getName() + i);
