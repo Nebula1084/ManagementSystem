@@ -31,7 +31,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div id="page-wrapper">
         <div class="graphs">
             <div class="xs">
-                <h3 th:text="${stock.name}+'('+${stock.code}+')'"></h3>
+                <h3 th:text="${stock.code}"></h3>
 
                 <div class="inbox_right content_bottom">
 
@@ -68,7 +68,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                                     </i>
                                     <div class="stats">
-                                        <h5><strong th:text="${stock.surging_range_set*100}+'%'"></strong></h5>
+                                        <h5><strong th:text="${stock.surging_range*100}+'%'"></strong></h5>
                                         <span>Surging limit</span>
                                     </div>
                                 </div>
@@ -84,7 +84,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         </div>
                                         <div class="modal-body">
                                             <div class="input-group">
-                                                <input type="number" min="0" max="100" class="form-control1"
+                                                <input type="number" min="0" max="10000" class="form-control1"
                                                        name="limit" placeholder=""/>
                                                 <span class="input-group-addon">%</span>
                                             </div>
@@ -107,7 +107,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                                     </i>
                                     <div class="stats">
-                                        <h5><strong th:text="${stock.decline_range_set*100}+'%'"></strong></h5>
+                                        <h5><strong th:text="${stock.decline_range*100}+'%'"></strong></h5>
                                         <span>Decline limit</span>
                                     </div>
                                 </div>
@@ -124,7 +124,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         </div>
                                         <div class="modal-body">
                                             <div class="input-group">
-                                                <input type="number" min="0" max="100" class="form-control1"
+                                                <input type="number" min="0" max="10000" class="form-control1"
                                                        name="limit" placeholder=""/>
                                                 <span class="input-group-addon">%</span>
                                             </div>

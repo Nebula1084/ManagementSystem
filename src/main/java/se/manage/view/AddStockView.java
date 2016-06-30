@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.thymeleaf.context.WebContext;
 import se.manage.Sessionable;
 import se.manage.controller.UserController;
+import se.manage.stock.NewStockMonitor;
 import se.manage.stock.Stock;
 import se.manage.stock.StockMonitor;
 import se.manage.stock.VolatileStock;
@@ -24,7 +25,7 @@ import java.util.Set;
 public class AddStockView implements Sessionable {
 
     @Autowired
-    StockMonitor stockMonitor;
+    NewStockMonitor stockMonitor;
 
     private Logger logger = Logger.getLogger(AddStockView.class);
 

@@ -76,10 +76,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <thead>
                         <tr>
                             <th>Stock code</th>
-                            <th>Stock name</th>
                             <th>Stock price</th>
-                            <th>Surging limit(New)</th>
-                            <th>Decline limit(New)</th>
+                            <th>Surging limit</th>
+                            <th>Decline limit</th>
                             <th>Least price</th>
                             <th>Hight price</th>
                             <th>State</th>
@@ -92,10 +91,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <i class="fa fa-paperclip"></i>
                                 </a>
                             </th>
-                            <td th:text="${stock.name}"></td>
                             <td th:text="${stock.price}"></td>
-                            <td th:text="${stock.surging_range*100+'%('+stock.surging_range_set*100+'%)'}"></td>
-                            <td th:text="${stock.decline_range*100+'%('+stock.decline_range_set*100+'%)'}"></td>
+                            <td th:text="${stock.surging_range*100+'%'}"></td>
+                            <td th:text="${stock.decline_range*100+'%'}"></td>
                             <td th:text="${stock.least_price}"></td>
                             <td th:text="${stock.highest_price}"></td>
                             <td th:text="${stock.state}"></td>

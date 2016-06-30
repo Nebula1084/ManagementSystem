@@ -13,18 +13,20 @@ import se.manage.ManageStatus;
 import se.manage.Sessionable;
 import se.manage.order.Order;
 import se.manage.order.OrderRetriver;
-import se.manage.stock.StockMonitor;
+import se.manage.stock.NewStockMonitor;
 import se.manage.stock.VolatileStock;
 import se.manage.user.User;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @Controller
 public class OrderView implements Sessionable {
 
     @Autowired
-    StockMonitor stockMonitor;
+    NewStockMonitor stockMonitor;
 
     private Logger logger = Logger.getLogger(OrderView.class);
 

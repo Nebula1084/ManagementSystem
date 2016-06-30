@@ -24,6 +24,7 @@ public class PostTemplate {
     public String post(String url) {
         HttpEntity<MultiValueMap<String, String>> formEntity = new HttpEntity<>(mvm, headers);
         RestTemplate restTemplate = new RestTemplate();
+        System.out.println(formEntity);
         return restTemplate.postForObject(url, formEntity, String.class);
     }
 

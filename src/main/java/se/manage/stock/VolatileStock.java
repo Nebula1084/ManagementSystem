@@ -55,16 +55,36 @@ public class VolatileStock implements Cloneable {
         return this.name;
     }
 
+    public void setPrice(Float price) {
+        this.price = price;
+    }
+
     public Float getPrice() {
         return this.price;
+    }
+
+    public void setSurging_range(Float surging_range) {
+        this.surging_range = surging_range;
     }
 
     public Float getSurging_range() {
         return this.surging_range;
     }
 
+    public void setDecline_range(Float decline_range) {
+        this.decline_range = decline_range;
+    }
+
     public Float getDecline_range() {
         return this.decline_range;
+    }
+
+    public void setLeast_price(Float least_price) {
+        this.least_price = least_price;
+    }
+
+    public void setHighest_price(Float highest_price) {
+        this.highest_price = highest_price;
     }
 
     public Float getLeast_price() {

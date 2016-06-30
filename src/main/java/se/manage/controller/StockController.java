@@ -5,10 +5,11 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import se.manage.ManageStatus;
 import se.manage.Sessionable;
+import se.manage.stock.NewStockMonitor;
 import se.manage.stock.Stock;
-import se.manage.stock.StockMonitor;
 import se.manage.stock.VolatileStock;
 import se.manage.user.User;
 import se.manage.user.UserService;
@@ -24,17 +25,17 @@ import java.util.Set;
 public class StockController implements Sessionable {
     private Logger logger = Logger.getLogger(StockController.class);
     public final static String baseUrl = "http://localhost:9000";
-    private final static String pauseUrl = baseUrl + "/center/pause";
-    private final static String restartUrl = baseUrl + "/center/restart";
-    private final static String surgingUrl = baseUrl + "/center/limit/surging";
-    private final static String declineUrl = baseUrl + "/center/limit/decline";
+    private final static String pauseUrl = "https://se.clarkok.com/center/pause";
+    private final static String restartUrl = "https://se.clarkok.com/center/restart";
+    private final static String surgingUrl = "https://se.clarkok.com/center/limit/surging";
+    private final static String declineUrl = "https://se.clarkok.com/center/limit/decline";
     private ObjectMapper objectMapper;
 
     @Autowired
     UserService userService;
 
     @Autowired
-    StockMonitor stockMonitor;
+    NewStockMonitor stockMonitor;
 
     public StockController() {
         this.objectMapper = new ObjectMapper();
@@ -98,16 +99,13 @@ public class StockController implements Sessionable {
     }
 
     private String postLimit(String url, String code, String limit) {
-        PostTemplate postTemplate = new PostTemplate();
-        postTemplate.add("code", code);
-        postTemplate.add("limit", limit);
-        return postTemplate.post(url);
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(url + "?code=" + code + "&limit=" + limit, String.class);
     }
 
     private String postState(String url, String code) {
-        PostTemplate postTemplate = new PostTemplate();
-        postTemplate.add("code", code);
-        return postTemplate.post(url);
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(url + "?code=" + code, String.class);
     }
 
     private boolean parseReturn(String ret) {
